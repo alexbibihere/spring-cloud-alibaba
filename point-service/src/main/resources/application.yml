@@ -1,0 +1,12 @@
+server:
+  port: 9081
+spring:
+  application:
+    name: point-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        import-check:
+          enabled: false
