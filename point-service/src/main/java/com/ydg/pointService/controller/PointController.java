@@ -1,8 +1,7 @@
 package com.ydg.pointService.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.ydg.commonmodule.entity.Order;
 
 /**
  * @Author yandg
@@ -16,5 +15,15 @@ public class PointController {
     @GetMapping(value = "/test")
     public String test() {
         return "point test";
+    }
+
+    @PostMapping(value = "/add")
+    public String addPoint(@RequestBody Order order){
+        return "add point success! 商品名称222：" + order.getProductionName();
+    }
+
+    @PostMapping(value = "/add2")
+    public String addProductName(@RequestParam("productionName") String productionName){
+        return "add production name success" + productionName;
     }
 }

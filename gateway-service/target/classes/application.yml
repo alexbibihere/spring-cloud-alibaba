@@ -1,8 +1,8 @@
 spring:
   application:
-    name: order-service
+    name: gateway-service
   config:
-    import: nacos:order-service-dev.yml
+    import: nacos:gateway-service-dev.yml
   cloud:
     nacos:
       discovery:
@@ -10,6 +10,6 @@ spring:
       config:
         server-addr: localhost:8848
         file-extension : yml
-        import-check:
-          enabled: false
+#        import-check:
+#          enabled: false
 
