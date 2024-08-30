@@ -1,7 +1,7 @@
 package com.ydg.controller;
 
 import org.springframework.web.bind.annotation.*;
-import entity.Order;
+import com.ydg.entity.Order;
 
 /**
  * @Author yandg

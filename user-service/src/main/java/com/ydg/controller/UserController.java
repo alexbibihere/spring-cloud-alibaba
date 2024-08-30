@@ -2,6 +2,7 @@ package com.ydg.controller;
 
 import com.ydg.model.User;
 import com.ydg.service.UserService;
+import com.ydg.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,30 +18,30 @@ public class UserController {
 
 
     @RequestMapping("/get")
-    public User get(@RequestParam String username) {
-        return userService.getUserByUsername( username );
+    public Result get(@RequestParam String username) {
+        return Result.success(userService.getUserByUsername( username ));
     }
 
 
     @RequestMapping("/add")
-    public int add(@RequestParam String username, @RequestParam String password) {
+    public Result add(@RequestParam String username, @RequestParam String password) {
         User user = new User();
         user.setUsername(username);
-        return userService.addUser(user);
+        return Result.success(userService.addUser(user));
     }
 
 
     @RequestMapping("/delete")
-    public int delete(@RequestParam String id) {
-        return userService.deleteUser(id);
+    public Result delete(@RequestParam String id) {
+        return Result.success(userService.deleteUser(id));
     }
 
 
     @RequestMapping("/update")
-    public int update(@RequestParam String id, @RequestParam String username, @RequestParam String password) {
+    public Result update(@RequestParam String id, @RequestParam String username, @RequestParam String password) {
         User user = new User();
         user.setId(id);
         user.setUsername(username);
-        return userService.updateUser(user);
+        return Result.success(userService.updateUser(user));
     }
 }

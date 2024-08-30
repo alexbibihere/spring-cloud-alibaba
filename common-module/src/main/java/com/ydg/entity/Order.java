@@ -1,4 +1,4 @@
-package entity;
+package com.ydg.entity;
 
 
 public class Order {
