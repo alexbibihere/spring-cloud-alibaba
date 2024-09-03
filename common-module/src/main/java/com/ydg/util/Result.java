@@ -1,4 +1,4 @@
-package com.ydg.utils;
+package com.ydg.util;
 
 import lombok.Data;
 
