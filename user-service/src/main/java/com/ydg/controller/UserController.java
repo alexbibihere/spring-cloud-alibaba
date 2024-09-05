@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @Author: yandg
+ * @Date: 2024-9-5 17:23:24
+ * @Description: 用户相关类
+ */
 @RestController
 @RequestMapping("/users")
 @CrossOrigin(origins = "*")
@@ -15,6 +20,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/login")
+    public Result login(@RequestParam("username") String username, @RequestParam("password") String password){
+        return Result.success(userService.login(username, password));
+    }
 
     @GetMapping("/get")
     public Result get(@RequestParam("username")  String username) {

@@ -73,6 +73,28 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
         exportExcel(response, userList1);
     }
 
+    @Override
+    public Boolean login(String username, String password) {
+        log.info("登录参数：username={}, password={}", username, password);
+        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
+        if (user == null) {
+            log.info("用户名不存在");
+            return false;
+        }
+        if (!user.getPassword().equals(password)) {
+            log.info("密码错误");
+            return false;
+        }
+        log.info("登录成功");
+        return true;
+    }
+
+//    @Override
+//    public User getUserByToken(String token) {
+//        log.info("根据token获取用户信息：{}", token);
+//        return null;
+//    }
+
     private void exportExcel(HttpServletResponse response, List list) {
         try {
             Date date = new Date();

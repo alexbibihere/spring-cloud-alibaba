@@ -25,4 +25,6 @@ public interface UserService extends IService<User> {
     List<User> listUser();
 
     void exportALlUser(HttpServletResponse response);
+
+    Boolean login(String username, String password);
 }
