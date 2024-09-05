@@ -6,16 +6,25 @@
 
     <resultMap id="BaseResultMap" type="com.ydg.model.User">
             <result property="id" column="id" jdbcType="VARCHAR"/>
-            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="phone"     column="phone"     jdbcType="VARCHAR"/>
+            <result property="address"   column="address"   jdbcType="VARCHAR"/>
+            <result property="isDeleted"  column="is_deleted"  jdbcType="TINYINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,user_name,create_time
+        id,username,password,phone,address,is_deleted,create_time
     </sql>
     <select id="selectOne" resultType="com.ydg.model.User">
         select <include refid="Base_Column_List"/>
        from t_user where id = #{id}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from t_user
     </select>
 
 

@@ -1,6 +1,8 @@
 package com.ydg.controller;
 
 import com.ydg.feignClient.PointServiceFeignClient;
+import com.ydg.service.TOrderService;
+import com.ydg.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -23,6 +25,9 @@ public class OrderController {
     @Autowired
     private PointServiceFeignClient pointServiceFeignClient;
 
+    @Autowired
+    private TOrderService orderService;
+
     @Value("${config.info}")
     private String configInfo;
 
@@ -34,6 +39,11 @@ public class OrderController {
     @GetMapping(value = "/test/getConfigInfo")
     public  String getConfigInfo(){
         return configInfo;
+    }
+
+    @GetMapping(value = "/test/getAll")
+    public Result getPoint(){
+        return Result.success(orderService.getAll());
     }
 
     @PostMapping(value = "/add")

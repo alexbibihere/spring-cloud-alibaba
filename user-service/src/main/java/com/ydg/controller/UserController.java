@@ -4,10 +4,7 @@ import com.ydg.model.User;
 import com.ydg.service.UserService;
 import com.ydg.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,33 +16,33 @@ public class UserController {
     private UserService userService;
 
 
-    @RequestMapping("/get")
-    public Result get(@RequestParam String username) {
+    @GetMapping("/get")
+    public Result get(@RequestParam("username")  String username) {
         return Result.success(userService.getUserByUsername( username ));
     }
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public Result list() {
         return Result.success(userService.listUser());
     }
 
-    @RequestMapping("/add")
-    public Result add(@RequestParam User user) {
+    @PostMapping("/add")
+    public Result add(@RequestParam("user") User user) {
         return Result.success(userService.addUser(user));
     }
 
-    @RequestMapping("/delete")
-    public Result delete(@RequestParam String id) {
+    @PostMapping("/delete")
+    public Result delete(@RequestParam("id") String id) {
         return Result.success(userService.deleteUser(id));
     }
 
-    @RequestMapping("/update")
+    @PostMapping("/update")
     public Result update(@RequestParam User user) {
         return Result.success(userService.updateUser(user));
     }
 
 
-    @RequestMapping("/exportAll")
+    @GetMapping("/exportAll")
     public void exportAll(HttpServletResponse response) {
          userService.exportALlUser(response);
     }

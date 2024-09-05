@@ -38,7 +38,7 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
     @Override
     public User getUserByUsername(String username) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(User::getUserName, username);
+        queryWrapper.eq(User::getUsername, username);
         return userMapper.selectOne(queryWrapper);
     }
 
@@ -59,8 +59,7 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
 
     @Override
     public List<User> listUser() {
-        List<User> userList = userMapper.selectList(null);
-       return userList;
+        return userMapper.selectAll();
     }
 
     public void exportALlUser(HttpServletResponse response) {

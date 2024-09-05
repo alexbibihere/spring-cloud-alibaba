@@ -15,15 +15,15 @@ public class User implements Serializable {
 
     private String id;
 
-    private String userName;
+    private String username;
 
     private String password;
 
-    private String email;
-
     private String phone;
 
-    private Integer status;
+    private String address;
+
+    private Integer isDeleted;
 
     private Date createTime;
 

@@ -6,6 +6,8 @@ import com.ydg.service.TOrderService;
 import com.ydg.mapper.TOrderMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author gaojt
 * @description 针对表【t_order】的数据库操作Service实现
@@ -15,6 +17,10 @@ import org.springframework.stereotype.Service;
 public class TOrderServiceImpl extends ServiceImpl<TOrderMapper, TOrder>
     implements TOrderService{
 
+    @Override
+    public List<TOrder> getAll() {
+        return this.baseMapper.selectList(null);
+    }
 }
 
 

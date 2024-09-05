@@ -3,6 +3,8 @@ package com.ydg.service;
 import com.ydg.model.TOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author gaojt
 * @description 针对表【t_order】的数据库操作Service
@@ -10,4 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface TOrderService extends IService<TOrder> {
 
+    List<TOrder> getAll();
 }
