@@ -1,3 +1,6 @@
-# Project exclude paths
-/order-service/target/
-/point-service/target/
+*.iml
+*.ipr
+*.iws
+.idea/
+**/target/
+*.log
