@@ -40,18 +40,18 @@ public class UserController {
         return Result.success(userService.addUser(user));
     }
 
-    @PostMapping("/delete")
-    public Result delete(@RequestParam("id") String id) {
+    @RequestMapping("/delete")
+    public Result delete(@RequestParam String id) {
         return Result.success(userService.deleteUser(id));
     }
 
-    @PostMapping("/update")
+    @RequestMapping("/update")
     public Result update(@RequestParam User user) {
         return Result.success(userService.updateUser(user));
     }
 
 
-    @GetMapping("/exportAll")
+    @RequestMapping("/exportAll")
     public void exportAll(HttpServletResponse response) {
          userService.exportALlUser(response);
     }
