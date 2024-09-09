@@ -1,4 +1,4 @@
-package LeetCode;
+package com.LeetCode;
 
 /**
  * @Description: 给定一组句子，找出其中最多的单词数

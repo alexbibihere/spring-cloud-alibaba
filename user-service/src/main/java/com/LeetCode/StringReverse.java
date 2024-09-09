@@ -1,4 +1,4 @@
-package LeetCode;
+package com.LeetCode;
 
 /**
  * @Description: 字符串反转
