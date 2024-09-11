@@ -1,5 +1,7 @@
 package com.ydg.controller;
 
+import com.ydg.util.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.ydg.entity.Order;
 
@@ -12,6 +14,7 @@ import com.ydg.entity.Order;
 @RequestMapping(value = "/point")
 public class PointController {
 
+
     @GetMapping(value = "/test")
     public String test() {
         return "point test";
@@ -21,6 +24,8 @@ public class PointController {
     public String addPoint(@RequestBody Order order){
         return "add point success! 商品名称222：" + order.getProductionName();
     }
+
+
 
     @PostMapping(value = "/add2")
     public String addProductName(@RequestParam("productionName") String productionName){

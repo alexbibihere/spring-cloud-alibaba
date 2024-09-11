@@ -1,5 +1,6 @@
 package com.ydg;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description
  */
 @SpringBootApplication
+//@Mapper("com.ydg.mapper")
 public class PointServiceApplication {
 
     public static void main(String[] args) {

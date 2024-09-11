@@ -89,6 +89,13 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
         return true;
     }
 
+    @Override
+    public boolean register(User user) {
+        // TODO 注册逻辑
+        log.info("注册参数：{}", user);
+        return false;
+    }
+
 //    @Override
 //    public User getUserByToken(String token) {
 //        log.info("根据token获取用户信息：{}", token);

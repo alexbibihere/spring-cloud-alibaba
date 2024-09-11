@@ -27,4 +27,6 @@ public interface UserService extends IService<User> {
     void exportALlUser(HttpServletResponse response);
 
     Boolean login(String username, String password);
+
+    boolean register(User user);
 }

@@ -20,12 +20,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @PostMapping("/register")
+    public Result register(@RequestParam("user") User user) {
+        return Result.success(userService.register(user));
+    }
+
     @GetMapping("/login")
     public Result login(@RequestParam("username") String username, @RequestParam("password") String password){
         return Result.success(userService.login(username, password));
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getUserInfo")
     public Result get(@RequestParam("username")  String username) {
         return Result.success(userService.getUserByUsername( username ));
     }
