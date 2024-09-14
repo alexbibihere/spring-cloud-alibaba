@@ -14,9 +14,8 @@ import java.util.List;
 */
 public interface TUserMapper extends BaseMapper<User> {
 
-    User selectOne(LambdaQueryWrapper<User> queryWrapper);
+    User selectOneByUsername(String username);
 
-    List<User> selectAll();
 }
 
 

@@ -2,6 +2,7 @@ package com.ydg.service.impl;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.ydg.excel.UserExcel;
@@ -37,9 +38,7 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
 
     @Override
     public User getUserByUsername(String username) {
-        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(User::getUsername, username);
-        return userMapper.selectOne(queryWrapper);
+        return userMapper.selectOneByUsername(username);
     }
 
     @Override
@@ -59,7 +58,7 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
 
     @Override
     public List<User> listUser() {
-        return userMapper.selectAll();
+        return userMapper.selectList(null);
     }
 
     public void exportALlUser(HttpServletResponse response) {
@@ -76,7 +75,7 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
     @Override
     public Boolean login(String username, String password) {
         log.info("登录参数：username={}, password={}", username, password);
-        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
+        User user = userMapper.selectOneByUsername(username);
         if (user == null) {
             log.info("用户名不存在");
             return false;
@@ -91,16 +90,13 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
 
     @Override
     public boolean register(User user) {
-        // TODO 注册逻辑
+        user.setId(IdUtil.getSnowflakeNextIdStr());
+        user.setIsDeleted(0);
+        user.setCreateTime(new Date());
+        userMapper.insert(user);
         log.info("注册参数：{}", user);
         return false;
     }
-
-//    @Override
-//    public User getUserByToken(String token) {
-//        log.info("根据token获取用户信息：{}", token);
-//        return null;
-//    }
 
     private void exportExcel(HttpServletResponse response, List list) {
         try {
