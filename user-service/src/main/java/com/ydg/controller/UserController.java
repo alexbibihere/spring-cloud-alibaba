@@ -30,10 +30,17 @@ public class UserController {
         return Result.success(userService.login(username, password));
     }
 
+    @GetMapping("/logout")
+    public Result logout() {
+        return Result.success(userService.logout());
+        }
+
     @GetMapping("/getUserInfo")
     public Result get(@RequestParam("username")  String username) {
         return Result.success(userService.getUserByUsername( username ));
     }
+
+
 
     @GetMapping("/list")
     public Result list() {

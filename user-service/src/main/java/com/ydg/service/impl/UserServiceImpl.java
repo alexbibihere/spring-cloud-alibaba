@@ -6,6 +6,7 @@ import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.ydg.excel.UserExcel;
+import com.ydg.utils.SM4Util;
 import org.apache.poi.ss.usermodel.Workbook;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -60,6 +61,13 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
     public List<User> listUser() {
         return userMapper.selectList(null);
     }
+//    public List<User> listUserByCondition(User user) {
+//        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+//        if (user.getUsername() != null) {
+//            queryWrapper.eq(User::getUsername, user.getUsername());
+//        }
+//        return userMapper.selectList(queryWrapper);
+//    }
 
     public void exportALlUser(HttpServletResponse response) {
         List<User> userList = userMapper.selectList(null);
@@ -92,10 +100,16 @@ public class UserServiceImpl extends ServiceImpl<TUserMapper, User>
     public boolean register(User user) {
         user.setId(IdUtil.getSnowflakeNextIdStr());
         user.setIsDeleted(0);
+        user.setPassword(SM4Util.encrypt(user.getPassword()));
         user.setCreateTime(new Date());
         userMapper.insert(user);
         log.info("注册参数：{}", user);
         return false;
+    }
+
+    @Override
+    public Object logout() {
+        return null;
     }
 
     private void exportExcel(HttpServletResponse response, List list) {

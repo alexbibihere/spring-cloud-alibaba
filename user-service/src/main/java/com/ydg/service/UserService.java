@@ -29,4 +29,6 @@ public interface UserService extends IService<User> {
     Boolean login(String username, String password);
 
     boolean register(User user);
+
+    Object logout();
 }
